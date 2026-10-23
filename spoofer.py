@@ -54,7 +54,7 @@ DISCORD_INVITE_URL = "https://discord.gg/QEC6QttWMh"
 GATE_WAIT = 10            # seconds before enter is accepted on each setup step
 
 BATCH_SIZE = 50           # events per /science request
-BATCH_DELAY = 0.3         # seconds between requests
+BATCH_DELAY = 1           # seconds between requests
 AUTH_MAX_AGE = 12 * 3600  # refetch the analytics token once the cache is older than this
 DEBUG = False
 
