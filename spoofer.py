@@ -896,10 +896,7 @@ class App:
         
         self.state.total_games_claimed += ok
         self.state.total_hours_claimed += ok * hours
-        
-        # --- HISTORY LOGGER ---
-        import json
-        import os
+    
         
         history_file = "run_history.json"
         history = []
@@ -1004,8 +1001,7 @@ class App:
             C.info(f"loaded {C.ORANGE}{len(self.games)}{C.WHITE} games")
             
             # --- LAST RUN TIME ---
-            import json
-            import os
+            
             last_run = "Never"
             if os.path.exists("run_history.json"):
                 try:
@@ -1047,8 +1043,8 @@ class App:
 
     def get_current_user(self) -> str:
         try:
-            import urllib.request
-            import json
+            
+            
             
             token = str(self.state.token).strip()
             cookie = str(self.state.cookie).strip()
@@ -1067,8 +1063,7 @@ class App:
             return "Offline"
 
     def view_history(self) -> None:
-        import json
-        import os
+        
         C = self.console
         C.clear()
         C.banner()
@@ -1105,7 +1100,7 @@ class App:
         input(f"  {C.GREY}press enter to continue...{C.RESET}")
 
     def switch_profile(self) -> None:
-        import os
+        
         C = self.console
         print()
         C.info("profile manager")
@@ -1128,16 +1123,15 @@ class App:
                 os.replace(load_file, current_file)
                 C.ok("profile", f"loaded profile '{load_name}'")
                 print(f"  {C.GREEN}[+] Restarting script to apply changes...{C.RESET}")
-                import time
-                import sys
+                
                 time.sleep(1.5)
                 os.execv(sys.executable, ['python'] + sys.argv)
             else:
                 C.err("profile", f"profile '{load_name}' not found")
-                
-        import time
+
         time.sleep(2)
-        if __name__ == "__main__":
+
+if __name__ == "__main__":
     try:
         App().start()
     except KeyboardInterrupt:
