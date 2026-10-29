@@ -859,7 +859,6 @@ class App:
             C.err("input", "invalid hours")
             return
 
-        # --- SAFETY CALCULATOR ---
         calc_hours = int(count * hours)
         print(f"\n[!] You are about to send {C.ORANGE}{count}{C.RESET} games at {C.ORANGE}{hours}{C.RESET} hours each.")
         print(f"[!] Total hours: {C.ORANGE}{calc_hours:,}{C.RESET}")
@@ -930,11 +929,9 @@ class App:
         unused_ids = [g.id for g in self.games if g.id not in self.state.used_games]
         used_ids = [gid for gid in self.state.used_games if gid in available_ids]
 
-        # if we have enough unused, take from there
         if len(unused_ids) >= count:
             selected_ids = unused_ids[:count]
         else:
-            # fill with unused, then rotate through used
             selected_ids = unused_ids
             if used_ids:
                 remaining = count - len(selected_ids)
@@ -999,9 +996,7 @@ class App:
             
             # show stats
             C.info(f"loaded {C.ORANGE}{len(self.games)}{C.WHITE} games")
-            
-            # --- LAST RUN TIME ---
-            
+               
             last_run = "Never"
             if os.path.exists("run_history.json"):
                 try:
@@ -1013,8 +1008,6 @@ class App:
                     pass
             
             C.info(f"last run {C.ORANGE}{last_run}{C.RESET}")
-            # ---------------------
-            
             C.rule()
             C.info(f"{C.ORANGE}1{C.RESET} · claim games")
             C.info(f"{C.ORANGE}2{C.RESET} · refresh auth")
@@ -1043,9 +1036,6 @@ class App:
 
     def get_current_user(self) -> str:
         try:
-            
-            
-            
             token = str(self.state.token).strip()
             cookie = str(self.state.cookie).strip()
             
@@ -1062,8 +1052,7 @@ class App:
         except Exception as e:
             return "Offline"
 
-    def view_history(self) -> None:
-        
+    def view_history(self) -> None: 
         C = self.console
         C.clear()
         C.banner()
